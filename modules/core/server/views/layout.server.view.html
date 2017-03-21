@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link data-require="bootstrap@3.3.2" data-semver="3.3.2" rel="stylesheet"
+        href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-table/0.8.3/ng-table.min.css"/>
+
+  <script data-require="angular.js@1.3.7" data-semver="1.3.7"
+          src="https://code.angularjs.org/1.3.7/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/0.8.3/ng-table.min.js"></script>
+
+</head>
+
+<body ng-app="ngTableApp">
+<h1>NgTable with select filters</h1>
+<div ng-controller="ctrl">
+  <table ng-table="tableParams" class="table" show-filter="true">
+    <tbody>
+    <tr ng-repeat="row in $data">
+      <td data-title="'Name'" sortable="'name'">{{ row.name }}</td>
+      <td data-title="'Age'" sortable="'age'">{{ row.age }}</td>
+    </tr>
+    </tbody>
+  </table>
+
+
+</div>
+
+
+</body>
+
+</body>
+<script>
+  var app = angular.module('ngTableApp', ['ngTable'])
+    .controller('ctrl', function ($scope,  NgTableParams) {
+
+      var dataset = [{
+        name: "Moroni",
+        age: "2"
+      }, {
+        name: "Moroni",
+        age: "2"
+      }, {
+        name: "Moroni",
+        age: "2"
+      }, {
+        name: "Moroni",
+        age: "2"
+      }, {
+        name: "Moroni",
+
+      }];
+      //$scope.data = datas;
+      $scope.tableParams = new NgTableParams({
+        page: 1,
+        count: 15,
+        sorting: {name: "asc"},
+      }, {
+        data: dataset
+      });
+  console.log("tableParams",$scope.tableParams)
+    })
+
+
+</script>
+</html>
